@@ -12,9 +12,9 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   const router = useRouter();
 
-  const [doors, setDoors] = useState("0");
-  const [windows, setWindows] = useState("0");
-  const [kitchens, setKitchens] = useState("0");
+  const [doors, setDoors] = useState("");
+  const [windows, setWindows] = useState("");
+  const [kitchens, setKitchens] = useState("");
 
   const handleCalculate = () => {
     // Build URL with query params
