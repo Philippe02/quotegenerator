@@ -1,9 +1,32 @@
+"use client";
+
+import { useRouter } from "next/navigation"; // App Router
+import { useState } from "react";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
+  const router = useRouter();
+
+  const [doors, setDoors] = useState("0");
+  const [windows, setWindows] = useState("0");
+  const [kitchens, setKitchens] = useState("0");
+
+  const handleCalculate = () => {
+    // Build URL with query params
+    const query = new URLSearchParams({
+      doors,
+      windows,
+      kitchens,
+    }).toString();
+
+    router.push(`/quote?${query}`);
+  };
+
   return (
     <main className="h-full w-full flex flex-col row-start-2">
       <div className="nav-bar w-full h-20 flex items-center justify-center">
@@ -27,6 +50,8 @@ export default function Home() {
               inputMode="numeric"
               pattern="[0-9]*"
               id="doors"
+              value={doors}
+              onChange={(e) => setDoors(e.target.value)}
               placeholder="0"
             />
           </div>
@@ -37,6 +62,8 @@ export default function Home() {
               inputMode="numeric"
               pattern="[0-9]*"
               id="windows"
+              value={windows}
+              onChange={(e) => setWindows(e.target.value)}
               placeholder="0"
             />
           </div>
@@ -50,8 +77,15 @@ export default function Home() {
               inputMode="numeric"
               pattern="[0-9]*"
               id="kitchens"
+              value={kitchens}
+              onChange={(e) => setKitchens(e.target.value)}
               placeholder="0"
             />
+          </div>
+          <div className="mt-4 flex justify-end w-98">
+            <Button variant="secondary" onClick={handleCalculate}>
+              Calculate
+            </Button>
           </div>
         </Card>
       </div>
