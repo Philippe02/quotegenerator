@@ -82,7 +82,7 @@ export default function Home() {
               placeholder="0"
             />
           </div>
-          <div className="mt-4 flex justify-end w-98">
+          <div className="mt-4 flex justify-end w-full">
             <Button variant="secondary" onClick={handleCalculate}>
               Calculate
             </Button>
